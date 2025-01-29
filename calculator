@@ -285,7 +285,7 @@
         }
       });
 
-      document.getElementById('result').textContent = `Total Monthly Cost: $${totalCost.toLocaleString()} | Total Resources: ${totalResources}`;
+      document.getElementById('result').textContent = `Total Estimated Monthly Cost: $${totalCost.toLocaleString()} | Total Team Members: ${totalResources}`;
     });
   </script>
 </body>
