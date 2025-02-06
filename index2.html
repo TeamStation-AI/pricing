@@ -34,6 +34,7 @@
         }
 
         h2 {
+            text-align: left;
             font-size: 1.75rem;
             margin-bottom: 20px;
             color: white;
@@ -46,6 +47,8 @@
             border-radius: 8px;
             background-color: #0c1020;
             position: relative;
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack elements vertically */
         }
 
         label {
@@ -53,6 +56,7 @@
             margin-bottom: 8px;
             font-weight: 500;
             color: white;
+            text-align: left;
         }
 
         select,
@@ -67,6 +71,7 @@
             color: white;
             font-size: 1rem;
             transition: border-color 0.2s ease;
+            box-sizing: border-box; /* Ensure padding doesn't affect width */
         }
 
         select:focus,
@@ -92,6 +97,7 @@
             margin-top: 15px;
             font-weight: 500;
             text-align: center; /* Ensure text is centered */
+            box-sizing: border-box;
         }
 
         button:hover {
@@ -113,6 +119,10 @@
             width: auto;
             padding: 8px 12px;
             display: inline-block;
+            position: absolute; /* Position the button */
+            top: 10px;
+            right: 10px;
+            box-sizing: border-box;
         }
 
         .remove-role:hover {
@@ -127,6 +137,8 @@
             text-align: left; /* Align text to the left */
             color: #90EE90;
             line-height: 1.4; /* Improve readability */
+            word-break: break-word; /* Prevent long words from overflowing */
+            box-sizing: border-box;
         }
 
         .reset-button {
@@ -144,6 +156,7 @@
             width: 100%;
             max-width: 300px; /* Reduced width */
             text-align: center;
+            box-sizing: border-box;
         }
 
         .reset-button:hover {
@@ -156,6 +169,7 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Center items horizontally */
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -218,7 +232,7 @@
                     </select>
 
                     <label for="count-1">Number of Team Members:</label>
-                    <input type="number" id="count-1" name="counts" value="1" min="1" required  style="max-width: 300px;">
+                    <input type="number" id="count-1" name="counts" value="1" min="1" required style="max-width: 300px; box-sizing: border-box;">
 
                     <button type="button" class="remove-role" onclick="removeRole(this)">Remove</button>
                 </div>
@@ -233,25 +247,25 @@
 
     <script>
         const hourlyRates = {
-            aiprompt: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            aiprompt: { proficient: 25, mid: 35, senior: 40, expert: 55 },
             architect: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             backend: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             bi: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             businessanalyst: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             cloudengineer: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             crossplatform: { proficient: 20, mid: 30, senior: 40, expert: 50 },
-            dataengineer: { proficient: 25, mid: 35, senior: 45, expert: 55 },
-            datascientist: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            dataengineer: { proficient: 25, mid: 35, senior: 40, expert: 55 },
+            datascientist: { proficient: 25, mid: 35, senior: 40, expert: 55 },
             datatester: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             dba: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             devops: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             devsec: { proficient: 20, mid: 30, senior: 40, expert: 50 },
-            ecommerce: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            ecommerce: { proficient: 25, mid: 35, senior: 40, expert: 55 },
             evangelist: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             experienceassurance: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             frontend: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             fullstack: { proficient: 20, mid: 30, senior: 40, expert: 50 },
-            ml: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            ml: { proficient: 25, mid: 35, senior: 40, expert: 55 },
             mobilearch: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             mobileengineer: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             mobiletester: { proficient: 20, mid: 30, senior: 40, expert: 50 },
@@ -262,7 +276,7 @@
             qalead: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             qamanual: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             releasemanager: { proficient: 20, mid: 30, senior: 40, expert: 50 },
-            salesforce: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            salesforce: { proficient: 25, mid: 35, senior: 40, expert: 55 },
             scrummaster: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             sdet: { proficient: 20, mid: 30, senior: 40, expert: 50 },
             techlead: { proficient: 20, mid: 30, senior: 40, expert: 50 },
@@ -335,7 +349,7 @@
                 </select>
 
                 <label for="count-${roleCounter}">Number of Team Members:</label>
-                <input type="number" id="count-${roleCounter}" name="counts" value="1" min="1" required style="max-width: 300px;">
+                <input type="number" id="count-${roleCounter}" name="counts" value="1" min="1" required style="max-width: 300px; box-sizing: border-box;">
 
                 <button type="button" class="remove-role" onclick="removeRole(this)">Remove</button>
             `;
