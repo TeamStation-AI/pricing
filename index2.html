@@ -4,271 +4,399 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeamStation IT Cost Estimator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* General Styles - Approximating TeamStation Look */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa; /* Light gray background */
-            color: #343a40; /* Dark gray text */
+            font-family: 'Poppins', sans-serif;
+            background-color: #0c1020;
+            color: white;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            line-height: 1.6;
         }
 
         .container {
-            width: 80%;
-            max-width: 800px;
-            background-color: #fff;
+            max-width: 900px;
+            margin: 40px auto;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #0c1020;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
         }
 
         h1 {
-            color: #007bff; /* TeamStation blue */
             text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 1.75rem;
             margin-bottom: 20px;
+            color: white;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background-color: #0c1020;
+            position: relative;
         }
 
         label {
             display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: white;
+        }
+
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            background-color: #0c1020;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        select:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #66b3ff;
+            box-shadow: 0 0 8px rgba(102, 179, 255, 0.2);
+        }
+
+        /* Button Styles */
+        button {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
             margin-top: 15px;
             font-weight: 500;
         }
 
-        select, input[type="number"] {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            border: 1px solid #ced4da; /* Light gray border */
-            border-radius: 5px;
-            box-sizing: border-box; /* Important for padding */
-            font-size: 16px;
-        }
-
-        select:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: #007bff; /* TeamStation blue on focus */
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); /* Subtle blue shadow */
-        }
-
-        button {
-            background-color: #007bff; /* TeamStation blue */
-            color: #fff;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            margin-top: 25px;
-        }
-
         button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background: #0056b3;
+            transform: translateY(-2px);
         }
 
-        button.reset {
-            background-color: #dc3545; /* Red for reset */
+        #add-role {
+            background: #28a745;
         }
 
-        button.reset:hover {
-            background-color: #c82333; /* Darker red on hover */
+        #add-role:hover {
+            background: #1e7e34;
         }
 
-        .remove-role-container {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-            justify-content: flex-end;
-        }
-
-        .remove-role-button {
-            background-color: #dc3545;
-            color: #fff;
-            border: none;
+        .remove-role {
+            background: #dc3545;
+            margin-top: 5px;
+            width: auto;
             padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
+            display: inline-block;
         }
 
-        .remove-role-button:hover {
-            background-color: #c82333;
+        .remove-role:hover {
+            background: #c82333;
         }
 
-        #result {
+        /* Result Styles */
+        .result {
             margin-top: 30px;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 1.3rem;
+            font-weight: 600;
             text-align: center;
-            color: #28a745; /* Green for positive result */
+            color: #90EE90;
         }
 
-        /* Mobile-Friendly Adjustments */
-        @media (max-width: 600px) {
-            .container {
-                width: 95%;
-                padding: 20px;
-            }
+        .reset-button {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 15px;
+            font-weight: 500;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
 
-            h1 {
-                font-size: 24px;
-            }
-
-            select, input[type="number"] {
-                font-size: 14px;
-            }
-
-            button {
-                font-size: 16px;
-            }
-
-            #result {
-                font-size: 18px;
-            }
+        .reset-button:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>IT Talent Cost Estimator</h1>
+        <h1>Nearshore Team Pricing Calculator</h1>
+        <form id="pricing-form">
+            <h2>Build Your IT Team</h2>
+            <div id="team-roles">
+                <!-- Initial Role Template -->
+                <div class="form-section" data-role-id="1">
+                    <label for="role-1">Role:</label>
+                    <select id="role-1" name="roles" required>
+                        <option value="">-- Select a Role --</option>
+                        <option value="aiprompt">AI Prompt Engineer</option>
+                        <option value="architect">Software Architect</option>
+                        <option value="backend">Back-End Developer</option>
+                        <option value="bi">Business Intelligence</option>
+                        <option value="businessanalyst">Business Analyst</option>
+                        <option value="cloudengineer">Cloud Engineer</option>
+                        <option value="crossplatform">Cross-Platform Designer</option>
+                        <option value="dataengineer">Data Engineer</option>
+                        <option value="datascientist">Data Scientist</option>
+                        <option value="datatester">Data Tester</option>
+                        <option value="dba">DBA Engineer</option>
+                        <option value="devops">DevOps Engineer</option>
+                        <option value="devsec">DevSec Engineer</option>
+                        <option value="ecommerce">eCommerce Certified Specialist</option>
+                        <option value="evangelist">DevOps Evangelist</option>
+                        <option value="experienceassurance">Experience Assurance Engineer</option>
+                        <option value="frontend">Front-End Developer</option>
+                        <option value="fullstack">Full-Stack Developer</option>
+                        <option value="ml">Machine Learning Engineer</option>
+                        <option value="mobilearch">Mobile Architect</option>
+                        <option value="mobileengineer">Mobile Engineer</option>
+                        <option value="mobiletester">Mobile Tester</option>
+                        <option value="productdesigner">Product Designer</option>
+                        <option value="productmanager">Product Manager</option>
+                        <option value="productowner">Product Owner</option>
+                        <option value="qa">QA Automation Engineer</option>
+                        <option value="qalead">QA Lead</option>
+                        <option value="qamanual">QA Manual Tester</option>
+                        <option value="releasemanager">Release Manager</option>
+                        <option value="salesforce">Salesforce Architect</option>
+                        <option value="scrummaster">Scrum Master</option>
+                        <option value="sdet">SDET</option>
+                        <option value="techlead">Technical Lead</option>
+                        <option value="testlead">Test Lead</option>
+                        <option value="usabilitytester">Usability Test Engineer</option>
+                        <option value="uxdesigner">UX Designer</option>
+                        <option value="utilitytech">Utility Technology Partner</option>
+                    </select>
 
-        <div id="role-container">
-            <label for="role">Select Role:</label>
-            <select id="role">
-                <optgroup label="AI Design and Engineering">
-                    <option value="prompt_engineer">AI Prompt Engineers</option>
-                    <option value="data_scientist">Data Scientists</option>
-                    <option value="data_engineer">Data Engineers</option>
-                    <option value="dba_engineer">DBA Engineers/Analysts</option>
-                    <option value="bi">Business Intelligence</option>
-                    <option value="data_tester">Data Testers</option>
-                </optgroup>
+                    <label for="level-1">Seniority:</label>
+                    <select id="level-1" name="levels" required>
+                        <option value="proficient">Proficient</option>
+                        <option value="mid">Mid-Level</option>
+                        <option value="senior">Senior</option>
+                        <option value="expert">Expert Certified</option>
+                    </select>
 
-                <optgroup label="Software Development">
-                    <option value="architect">Architects</option>
-                    <option value="salesforce_architect">Salesforce Architects</option>
-                    <option value="machine_learning">Machine Learning</option>
-                    <option value="full_stack">Full Stack</option>
-                    <option value="front_end">Front End</option>
-                    <option value="back_end">Back End</option>
-                </optgroup>
+                    <label for="count-1">Number of Team Members:</label>
+                    <input type="number" id="count-1" name="counts" value="1" min="1" required>
 
-                <optgroup label="Software Product">
-                    <option value="product_manager">Product Managers</option>
-                    <option value="product_designer">Product Designers</option>
-                    <option value="product_owner">Product Owners</option>
-                    <option value="ux_ui_designer">UX/UI Designers</option>
-                    <option value="scrum_master">Scrum Masters</option>
-                    <option value="business_analyst">Business Analysts</option>
-                </optgroup>
-
-                <optgroup label="Mobile Software">
-                    <option value="mobile_architect">Architects (Mobile)</option>
-                    <option value="technical_lead">Technical Leads (Mobile)</option>
-                    <option value="mobile_engineer">Engineers (Mobile)</option>
-                    <option value="mobile_tester">Testers (Mobile)</option>
-                    <option value="cross_platform">Cross-Platform</option>
-                    <option value="mobile_designer">Designers (Mobile)</option>
-                </optgroup>
-
-                <optgroup label="DevOps">
-                    <option value="devops_evangelist">Evangelist</option>
-                    <option value="devops_engineer">Engineers</option>
-                    <option value="devops_tester">Testers</option>
-                    <option value="devsec">DevSec</option>
-                    <option value="cloud_engineer">Cloud Engineers</option>
-                    <option value="release_manager">Release Managers</option>
-                    <option value="experience_assurance">Experience Assurance</option>
-                </optgroup>
-
-                <optgroup label="QA Testing">
-                    <option value="qa_automation">QA Automation Engineers</option>
-                    <option value="qa_manual">QA Manual Testers</option>
-                    <option value="qa_lead">QA Lead</option>
-                    <option value="test_lead">Test Lead</option>
-                    <option value="sdet">SDET</option>
-                    <option value="usability_test">Usability Test Engineers</option>
-                </optgroup>
-
-            </select>
-            <div class="remove-role-container">
-                <button class="remove-role-button" onclick="removeRole()">Remove Role</button>
+                    <button type="button" class="remove-role" onclick="removeRole(this)">Remove</button>
+                </div>
             </div>
-        </div>
+            <button type="button" id="add-role">Add Another Role</button>
+            <button type="submit">Calculate Total Estimated Monthly Cost</button>
+            <button type="button" class="reset-button" onclick="resetCalculator()">Reset Application</button>
+        </form>
 
-        <label for="level">Select Experience Level:</label>
-        <select id="level">
-            <option value="entry">Pre-Vetted Proficient (Entry)</option>
-            <option value="mid">Pre-Vetted Mid Level</option>
-            <option value="senior">Pre-Vetted Senior Level</option>
-            <option value="expert">Pre-Vetted Expert Certified</option>
-        </select>
-
-        <label for="hours">Estimated Hours per Month:</label>
-        <input type="number" id="hours" value="173">
-
-        <button onclick="calculateCost()">Calculate Cost</button>
-        <button class="reset" onclick="resetCalculator()">Reset</button>
-
-        <div id="result"></div>
+        <div id="result" class="result"></div>
     </div>
 
     <script>
-        function calculateCost() {
-            const role = document.getElementById("role").value;
-            const level = document.getElementById("level").value;
-            const hours = parseFloat(document.getElementById("hours").value);
+        const hourlyRates = {
+            aiprompt: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            architect: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            backend: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            bi: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            businessanalyst: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            cloudengineer: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            crossplatform: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            dataengineer: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            datascientist: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            datatester: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            dba: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            devops: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            devsec: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            ecommerce: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            evangelist: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            experienceassurance: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            frontend: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            fullstack: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            ml: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            mobilearch: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            mobileengineer: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            mobiletester: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            productdesigner: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            productmanager: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            productowner: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            qa: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            qalead: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            qamanual: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            releasemanager: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            salesforce: { proficient: 25, mid: 35, senior: 45, expert: 55 },
+            scrummaster: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            sdet: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            techlead: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            testlead: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            usabilitytester: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            uxdesigner: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+            utilitytech: { proficient: 20, mid: 30, senior: 40, expert: 50 },
+        };
 
-            let hourlyRate = 0;
-            let deviation = 0;
+        let roleCounter = 1; // Track the number of roles
 
-            switch (level) {
-                case "entry":
-                    hourlyRate = 20;
-                    deviation = 5;
-                    break;
-                case "mid":
-                    hourlyRate = 30;
-                    deviation = 5;
-                    break;
-                case "senior":
-                    hourlyRate = 40;
-                    deviation = 5;
-                    break;
-                case "expert":
-                    hourlyRate = 50;
-                    deviation = 10;
-                    break;
-                default:
-                    alert("Invalid experience level.");
-                    return;
-            }
+        document.getElementById('add-role').addEventListener('click', function () {
+            roleCounter++;
+            const teamRoles = document.getElementById('team-roles');
 
-            const minRate = hourlyRate - deviation;
-            const maxRate = hourlyRate + deviation;
-            const minCost = minRate * hours;
-            const maxCost = maxRate * hours;
+            // Create the new role section
+            const roleSection = document.createElement('div');
+            roleSection.className = 'form-section';
+            roleSection.dataset.roleId = roleCounter; // Store a unique ID
 
-            const resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = `Estimated Cost: $${minCost.toFixed(2)} - $${maxCost.toFixed(2)}`;
+            roleSection.innerHTML = `
+                <label for="role-${roleCounter}">Role:</label>
+                <select id="role-${roleCounter}" name="roles" required>
+                    <option value="">-- Select a Role --</option>
+                    <option value="aiprompt">AI Prompt Engineer</option>
+                    <option value="architect">Software Architect</option>
+                    <option value="backend">Back-End Developer</option>
+                    <option value="bi">Business Intelligence</option>
+                    <option value="businessanalyst">Business Analyst</option>
+                    <option value="cloudengineer">Cloud Engineer</option>
+                    <option value="crossplatform">Cross-Platform Designer</option>
+                    <option value="dataengineer">Data Engineer</option>
+                    <option value="datascientist">Data Scientist</option>
+                    <option value="datatester">Data Tester</option>
+                    <option value="dba">DBA Engineer</option>
+                    <option value="devops">DevOps Engineer</option>
+                    <option value="devsec">DevSec Engineer</option>
+                    <option value="ecommerce">eCommerce Certified Specialist</option>
+                    <option value="evangelist">DevOps Evangelist</option>
+                    <option value="experienceassurance">Experience Assurance Engineer</option>
+                    <option value="frontend">Front-End Developer</option>
+                    <option value="fullstack">Full-Stack Developer</option>
+                    <option value="ml">Machine Learning Engineer</option>
+                    <option value="mobilearch">Mobile Architect</option>
+                    <option value="mobileengineer">Mobile Engineer</option>
+                    <option value="mobiletester">Mobile Tester</option>
+                    <option value="productdesigner">Product Designer</option>
+                    <option value="productmanager">Product Manager</option>
+                    <option value="productowner">Product Owner</option>
+                    <option value="qa">QA Automation Engineer</option>
+                    <option value="qalead">QA Lead</option>
+                    <option value="qamanual">QA Manual Tester</option>
+                    <option value="releasemanager">Release Manager</option>
+                    <option value="salesforce">Salesforce Architect</option>
+                    <option value="scrummaster">Scrum Master</option>
+                    <option value="sdet">SDET</option>
+                    <option value="techlead">Technical Lead</option>
+                    <option value="testlead">Test Lead</option>
+                    <option value="usabilitytester">Usability Test Engineer</option>
+                    <option value="uxdesigner">UX Designer</option>
+                    <option value="utilitytech">Utility Technology Partner</option>
+                </select>
+
+                <label for="level-${roleCounter}">Seniority:</label>
+                <select id="level-${roleCounter}" name="levels" required>
+                    <option value="proficient">Proficient</option>
+                    <option value="mid">Mid-Level</option>
+                    <option value="senior">Senior</option>
+                    <option value="expert">Expert Certified</option>
+                </select>
+
+                <label for="count-${roleCounter}">Number of Team Members:</label>
+                <input type="number" id="count-${roleCounter}" name="counts" value="1" min="1" required>
+
+                <button type="button" class="remove-role" onclick="removeRole(this)">Remove</button>
+            `;
+
+            teamRoles.appendChild(roleSection);
+        });
+
+        function removeRole(element) {
+            const roleSection = element.closest('.form-section');
+            roleSection.remove();
         }
 
         function resetCalculator() {
-            document.getElementById("role").selectedIndex = 0;
-            document.getElementById("level").selectedIndex = 0;
-            document.getElementById("hours").value = "173";
-            document.getElementById("result").innerHTML = "";
+            const teamRoles = document.getElementById('team-roles');
+            // Remove all dynamically added role sections
+            while (teamRoles.children.length > 1) {
+                teamRoles.removeChild(teamRoles.lastChild);
+            }
+
+            // Reset the first role section to its default values
+            const firstRole = document.querySelector('.form-section'); // Target the correct role
+            firstRole.querySelector('[name="roles"]').selectedIndex = 0;
+            firstRole.querySelector('[name="levels"]').selectedIndex = 0;
+            firstRole.querySelector('[name="counts"]').value = 1;
+
+            // Clear the result
+            document.getElementById('result').textContent = '';
         }
 
-        function removeRole() {
-            document.getElementById("role").selectedIndex = 0; // Just resets for now
-        }
+        document.getElementById('pricing-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let totalCostMin = 0;
+            let totalCostMax = 0;
+            let totalResources = 0;
+            const deviation = 5;
+            const roles = document.querySelectorAll('[name="roles"]'); // Select all role selects
+            const levels = document.querySelectorAll('[name="levels"]'); // Select all level selects
+            const counts = document.querySelectorAll('[name="counts"]'); // Select all count inputs
+
+            for (let i = 0; i < roles.length; i++) {
+                const roleElement = roles[i];
+                const levelElement = levels[i];
+                const countElement = counts[i];
+
+                const role = roleElement.value;
+                const level = levelElement.value;
+                const count = parseInt(countElement.value, 10);
+
+                if (hourlyRates[role] && hourlyRates[role][level]) {
+                    const baseRate = hourlyRates[role][level];
+                    const minRate = baseRate - deviation;
+                    const maxRate = baseRate + deviation;
+                    const minMonthlyCost = minRate * 173 * count;
+                    const maxMonthlyCost = maxRate * 173 * count;
+
+                    totalCostMin += minMonthlyCost;
+                    totalCostMax += maxMonthlyCost;
+                    totalResources += count;
+                }
+            }
+
+            const formattedTotalCostMin = totalCostMin.toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+            const formattedTotalCostMax = totalCostMax.toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+
+            document.getElementById('result').textContent = `Estimated Monthly Cost: $${formattedTotalCostMin} - $${formattedTotalCostMax} | Total Team Members: ${totalResources}`;
+        });
     </script>
 </body>
 </html>
