@@ -218,7 +218,7 @@
                     </select>
 
                     <label for="count-1">Number of Team Members:</label>
-                    <input type="number" id="count-1" name="counts" value="1" min="1" required>
+                    <input type="number" id="count-1" name="counts" value="1" min="1" required  style="max-width: 300px;">
 
                     <button type="button" class="remove-role" onclick="removeRole(this)">Remove</button>
                 </div>
@@ -335,7 +335,7 @@
                 </select>
 
                 <label for="count-${roleCounter}">Number of Team Members:</label>
-                <input type="number" id="count-${roleCounter}" name="counts" value="1" min="1" required>
+                <input type="number" id="count-${roleCounter}" name="counts" value="1" min="1" required style="max-width: 300px;">
 
                 <button type="button" class="remove-role" onclick="removeRole(this)">Remove</button>
             `;
