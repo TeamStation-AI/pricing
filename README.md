@@ -42,12 +42,22 @@ Alternatively, you can directly open `index.html` in any modern web browser.
 
 ## Pricing Model
 The cost estimation is based on **hourly rates** for each role and seniority level:
-- **Proficient:** $20 - $30/hr
-- **Mid-Level:** $30 - $40/hr
-- **Senior:** $40 - $50/hr
-- **Expert/Certified:** $50 - $60/hr
+- **Proficient:** Base rate of $25/hr (±$5 deviation)
+- **Mid-Level:** Base rate of $35/hr (±$5 deviation)
+- **Senior:** Base rate of $45/hr (±$5 deviation)
+- **Expert/Certified:** Base rate of $55/hr (±$10 deviation)
 
-> *Each role has an estimated cost range based on market rates and real-world hiring trends.*
+### Pricing Deviation
+- Each role has a **±$5 USD per hour** deviation applied based on **173 workable hours per month** by US national standards.
+- **Expert/Certified engineers** (e.g., Salesforce, E-commerce specialists) have a **±$10 USD per hour** deviation due to their specialized expertise.
+
+### Monthly Cost Calculation
+- The estimated monthly cost for each role is calculated as:
+  
+  **Hourly Rate × 173 Workable Hours × Number of Team Members**
+  
+- Example: A **Senior Backend Developer** with a base rate of $45/hr and a **±$5 deviation** will have an estimated monthly cost between **$6,920 and $8,260**.
+- For **Expert/Certified engineers**, the range extends further due to a **±$10 deviation**.
 
 ## Contributing
 We welcome contributions! If you'd like to contribute:
