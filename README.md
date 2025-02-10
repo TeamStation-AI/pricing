@@ -72,4 +72,4 @@ This project is licensed under the **MIT License** - see the `LICENSE` file for 
 
 
 ## Contact
-For questions or feedback, reach out to [TeamStation AI](https://www.teamstation.dev) or email us at **lonniet@teamstation.io**.
+For questions or feedback, reach out to [TeamStation AI](https://www.teamstation.dev) or email us at **lonnie@teamstation.io**.
