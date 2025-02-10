@@ -42,10 +42,10 @@ Alternatively, you can directly open `index.html` in any modern web browser.
 
 ## Pricing Model
 The cost estimation is based on **hourly rates** for each role and seniority level:
-- **Proficient:** Base rate of $25/hr (±$5 deviation)
-- **Mid-Level:** Base rate of $35/hr (±$5 deviation)
-- **Senior:** Base rate of $45/hr (±$5 deviation)
-- **Expert/Certified:** Base rate of $55/hr (±$10 deviation)
+- **Proficient:** Base rate of $20/hr (±$5 deviation)
+- **Mid-Level:** Base rate of $30/hr (±$5 deviation)
+- **Senior:** Base rate of $40/hr (±$5 deviation)
+- **Expert/Certified:** Base rate of $50/hr (±$10 deviation)
 
 ### Pricing Deviation
 - Each role has a **±$5 USD per hour** deviation applied based on **173 workable hours per month** by US national standards.
@@ -56,7 +56,7 @@ The cost estimation is based on **hourly rates** for each role and seniority lev
   
   **Hourly Rate × 173 Workable Hours × Number of Team Members**
   
-- Example: A **Senior Backend Developer** with a base rate of $45/hr and a **±$5 deviation** will have an estimated monthly cost between **$6,920 and $8,260**.
+- Example: A **Senior Backend Developer** with a base rate of $40/hr and a **±$5 deviation** will have an estimated monthly cost between **$6,065 and $7,785**.
 - For **Expert/Certified engineers**, the range extends further due to a **±$10 deviation**.
 
 ## Contributing
@@ -69,6 +69,7 @@ We welcome contributions! If you'd like to contribute:
 
 ## License
 This project is licensed under the **MIT License** - see the `LICENSE` file for details.
+
 
 ## Contact
 For questions or feedback, reach out to [TeamStation AI](https://www.teamstation.dev) or email us at **lonniet@teamstation.io**.
